@@ -1,3 +1,4 @@
+//start mock server with: json-server --watch db.json
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'

@@ -4,7 +4,7 @@
       <div class="event-header">
         <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
         <h1 class="title">{{ event.title }}</h1>
-        <h5>Organized by {{ event.organizer }}</h5>
+        <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
         <h5>Category: {{ event.category }}</h5>
       </div>
       <BaseIcon name="map">
@@ -29,14 +29,6 @@
         </li>
       </ul>
     </div>
-    <BaseMediabox>
-      <h2 slot="heading">Adam Jahr</h2>
-      <template slot="paragraph">
-        <p>My words.</p>
-        <BaseIcon name="book" />
-      </template>
-      <p>This will display in default unnnamed slot</p>
-    </BaseMediabox>
   </div>
 </template>
 

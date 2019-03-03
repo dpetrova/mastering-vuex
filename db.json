@@ -44,6 +44,34 @@
       "date": "2019-02-02T23:27:00.000Z",
       "time": "1:00",
       "attendees": []
+    },
+    {
+      "id": 2834265,
+      "category": "food",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "Time to lunch",
+      "description": "",
+      "location": "Home",
+      "date": "2019-03-03T11:33:00.000Z",
+      "time": "14:00",
+      "attendees": []
+    },
+    {
+      "id": 7256338,
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "Plant trees",
+      "description": "Plant some trees in the nearest forest",
+      "location": "Vitosha",
+      "date": "2019-03-09T11:47:00.000Z",
+      "time": "9:00",
+      "attendees": []
     }
   ]
 }
