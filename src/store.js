@@ -22,11 +22,9 @@ export default new Vuex.Store({
       { id: 3, text: '...', done: true },
       { id: 4, text: '...', done: false }
     ],
-    events: [
-      { id: 1, organizer: 'Adam', title: 'Cat Cabaret' },
-      { id: 2, organizer: 'Adam', title: 'Kitty Cluster' },
-      { id: 3, organizer: 'Adam', title: 'Puppy Parade' }
-    ],
+    event: {},
+    events: [],
+    eventsTotal: 0,
     count: 0
   },
   mutations: {
@@ -35,6 +33,15 @@ export default new Vuex.Store({
     },
     ADD_EVENT(state, event) {
       state.events.push(event)
+    },
+    SET_EVENT(state, event) {
+      state.event = event
+    },
+    SET_EVENTS(state, events) {
+      state.events = events
+    },
+    SET_EVENTS_TOTAL(state, total) {
+      state.eventsTotal = total
     }
   },
   actions: {
@@ -50,6 +57,42 @@ export default new Vuex.Store({
       return EventService.postEvent(event).then(() => {
         commit('ADD_EVENT', event.data)
       })
+    },
+    fetchEvent({ commit, getters }, id) {
+      var event = getters.getEventById(id) // See if we already have this event
+      if (event) {
+        // If we do, set the event
+        commit('SET_EVENT', event)
+      } else {
+        // If not, get it with the API.
+        EventService.getEvent(id)
+          .then(response => {
+            commit('SET_EVENT', response.data)
+          })
+          .catch(error => {
+            console.log('There was an error:', error.response)
+          })
+      }
+    },
+    // fetchEvents({ commit }) {
+    //   EventService.getEvents()
+    //     .then(response => {
+    //       commit('SET_EVENTS', response.data)
+    //     })
+    //     .catch(error => {
+    //       console.log('There was an error:', error.response)
+    //     })
+    // }
+    fetchEvents({ commit }, { perPage, page }) {
+      EventService.getEvents(perPage, page)
+        .then(response => {
+          //console.log('Total events are ' + response.headers['x-total-count'])
+          commit('SET_EVENTS', response.data)
+          commit('SET_EVENTS_TOTAL', response.headers['x-total-count']) //total number of events
+        })
+        .catch(error => {
+          console.log('There was an error:', error.response)
+        })
     }
   },
   getters: {
