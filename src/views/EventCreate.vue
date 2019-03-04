@@ -77,7 +77,7 @@ export default {
     // },
     //retrieve some state based upon a parameter
     // getEvent() {
-    //   return this.$store.getters.getEventById
+    //   return this.$store.getters['event/getEventById']
     // },
     //from store (using spread operator)
     ...mapState({
@@ -87,7 +87,7 @@ export default {
     }),
     ...mapGetters({
       catCount: 'catLength',
-      getEvent: 'getEventById'
+      getEvent: 'event/getEventById'
     })
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
       this.$store.dispatch('updateCount', this.incrementBy) //dispatch an action
     },
     createFreshEvent() {
-      const user = this.$store.state.user
+      const user = this.$store.state.user.user
       const id = Math.floor(Math.random() * 10000000)
       return {
         id: id,
@@ -112,7 +112,7 @@ export default {
     },
     createEvent() {
       this.$store
-        .dispatch('createEvent', this.event)
+        .dispatch('event/createEvent', this.event)
         .then(() => {
           // navigate to newly create event
           this.$router.push({

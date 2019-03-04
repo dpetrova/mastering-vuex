@@ -29,14 +29,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   props: ['id'],
-  computed: mapState(['event']),
+  computed: mapState({
+    event: state => state.event.event
+  }),
   created() {
-    this.$store.dispatch('fetchEvent', this.id)
+    //this.fetchEvent(this.id)
+    this.$store.dispatch('event/fetchEvent', this.id)
   }
+  //argument here is an array of namespace/action
+  //methods: mapActions(['event/fetchEvent'])
+
+  //first argument to mapActions here is the namespace,
+  //and the second is an array of methods we want our component to have an alias to
+  //methods: mapActions('event', ['fetchEvent'])
 }
 </script>
 

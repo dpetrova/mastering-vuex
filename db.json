@@ -2,12 +2,11 @@
   "events": [
     {
       "id": 5928101,
-      "user": {
-        "id": "abc123",
-        "name": "Adam"
-      },
       "category": "animal welfare",
-      "organizer": "Adam",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
       "title": "Cat Cabaret",
       "description": "Yay felines!",
       "location": "Meow Town",
@@ -17,12 +16,11 @@
     },
     {
       "id": 8419988,
-      "user": {
-        "id": "abc123",
-        "name": "Adam"
-      },
       "category": "animal welfare",
-      "organizer": "Adam",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
       "title": "Kitty Cluster",
       "description": "Yay cats!",
       "location": "Catlandia",
@@ -32,12 +30,11 @@
     },
     {
       "id": 4582797,
-      "user": {
-        "id": "abc123",
-        "name": "Adam"
-      },
       "category": "animal welfare",
-      "organizer": "Adam",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
       "title": "Puppy Parade",
       "description": "Yay pups!",
       "location": "Puptown ",
@@ -70,6 +67,20 @@
       "description": "Plant some trees in the nearest forest",
       "location": "Vitosha",
       "date": "2019-03-09T11:47:00.000Z",
+      "time": "9:00",
+      "attendees": []
+    },
+    {
+      "id": 8507389,
+      "category": "education",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "Learn C++",
+      "description": "learn c++ in depth",
+      "location": "at work",
+      "date": "2019-03-30T16:07:00.000Z",
       "time": "9:00",
       "attendees": []
     }
