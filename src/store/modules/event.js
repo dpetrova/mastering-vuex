@@ -88,7 +88,7 @@ export default {
     }
   },
   actions: {
-    createEvent({ commit, rootState }, event) {
+    createEvent({ commit, rootState, dispatch }, event) {
       //while state object here is only our local module’s state
       //rootState gives access to the root of the Vuex state
       console.log('User creating Event is ' + rootState.user.user.name)
@@ -107,11 +107,25 @@ export default {
       //this.$store.getters.filteredList
 
       //post event to our mock database (db.json)
-      return EventService.postEvent(event).then(() => {
-        commit('ADD_EVENT', event.data)
-      })
+      return EventService.postEvent(event)
+        .then(() => {
+          commit('ADD_EVENT', event.data)
+          const notification = {
+            type: 'success',
+            message: 'Your event has been created!'
+          }
+          dispatch('notification/add', notification, { root: true })
+        })
+        .catch(error => {
+          const notification = {
+            type: 'error',
+            message: 'There was a problem creating your event: ' + error.message
+          }
+          dispatch('notification/add', notification, { root: true })
+          throw error
+        })
     },
-    fetchEvent({ commit, getters }, id) {
+    fetchEvent({ commit, getters, dispatch }, id) {
       var event = getters.getEventById(id) // See if we already have this event
       if (event) {
         // If we do, set the event
@@ -123,11 +137,18 @@ export default {
             commit('SET_EVENT', response.data)
           })
           .catch(error => {
-            console.log('There was an error:', error.response)
+            //console.log('There was an error:', error.response)
+            const notification = {
+              type: 'error',
+              message: 'There was a problem fetching an event: ' + error.message
+            }
+            dispatch('notification/add', notification, {
+              root: true
+            })
           })
       }
     },
-    fetchEvents({ commit }, { perPage, page }) {
+    fetchEvents({ commit, dispatch }, { perPage, page }) {
       EventService.getEvents(perPage, page)
         .then(response => {
           //console.log('Total events are ' + response.headers['x-total-count'])
@@ -135,7 +156,12 @@ export default {
           commit('SET_EVENTS_TOTAL', response.headers['x-total-count']) //total number of events
         })
         .catch(error => {
-          console.log('There was an error:', error.response)
+          //console.log('There was an error:', error.response)
+          const notification = {
+            type: 'error',
+            message: 'There was a problem fetching events: ' + error.message
+          }
+          dispatch('notification/add', notification, { root: true })
         })
     }
   },

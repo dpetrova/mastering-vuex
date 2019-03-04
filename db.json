@@ -83,6 +83,34 @@
       "date": "2019-03-30T16:07:00.000Z",
       "time": "9:00",
       "attendees": []
+    },
+    {
+      "id": 680768,
+      "category": "animal welfare",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "Cat show",
+      "description": "A national cat show",
+      "location": "Sofia",
+      "date": "2019-04-18T17:53:00.000Z",
+      "time": "18:00",
+      "attendees": []
+    },
+    {
+      "id": 1307293,
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "Go fishing",
+      "description": "Go to a weekend fishing",
+      "location": "Pancharevo",
+      "date": "2019-03-09T19:15:00.000Z",
+      "time": "10:00",
+      "attendees": []
     }
   ]
 }
